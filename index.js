@@ -13,7 +13,8 @@ const io = new Server(httpServer, {
   cors: {
     origin: "*",
     methods: ['GET', 'POST']
-  }
+  },
+  maxHttpBufferSize: 1e6 // Max message size (in bytes) - 1MB
 });
 
 const socketToUser = new Map(); // socketId to username
