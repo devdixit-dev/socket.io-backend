@@ -59,12 +59,12 @@ io.on('connection', (socket) => {
       const from = socketToUser.get(socket.id);
       // set sender name to from variable
 
-      if(!from) throw new Error('sender not registered');
-      if(!to || !message) throw new Error('invalid payload');
+      if (!from) throw new Error('sender not registered');
+      if (!to || !message) throw new Error('invalid payload');
       // check from and payload
 
       const target = userToSocket.get(to);
-      if(!target) throw new Error('user not online');
+      if (!target) throw new Error('user not online');
       // verify target exists or not
 
       io.to(target).emit('message:receive', { from, message });
@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
       console.error(e);
       socket.emit('error', e.message);
     }
-  })
+  });
 
   socket.on('disconnect', () => {
     const user = socketToUser.get(socket.id);
